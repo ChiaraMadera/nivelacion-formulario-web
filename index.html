@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Formulario</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <input type="radio" name="tema" id="tema-normal" class="theme-toggle" checked />
+        <input type="radio" name="tema" id="tema-alto" class="theme-toggle" />
+
+        <form class="card" id="formulario">
+            <h1>Formulario de Datos Personales</h1>
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="50" />
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required minlength="2" maxlength="50" />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required maxlength="100" />
+
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required min="1900-01-01" />
+
+            <label for="paisResidencia">País de Residencia:</label>
+            <input type="text" id="paisResidencia" name="paisResidencia" required minlength="2" maxlength="60" />
+
+            <div class="theme-buttons">
+                <label for="tema-normal" class="btn btn-estilo btn-normal">Estilo Normal</label>
+                <label for="tema-alto" class="btn btn-estilo btn-alto">Estilo Alto Contraste</label>
+            </div>
+
+            <button type="submit" class="btn btn-enviar">Enviar</button>
+        </form>
+    </body>
+</html>
