@@ -3,37 +3,48 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Formulario</title>
+        <title>Formulario de Datos Personales</title>
         <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
-        <input type="radio" name="tema" id="tema-normal" class="theme-toggle" checked />
-        <input type="radio" name="tema" id="tema-alto" class="theme-toggle" />
+        <main class="card">
+            <form id="formulario" novalidate>
+                <fieldset>
+                    <legend>Formulario de Datos Personales</legend>
 
-        <form class="card" id="formulario">
-            <h1>Formulario de Datos Personales</h1>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" maxlength="50" autocomplete="given-name" />
+                    <span class="error-msg" id="error-nombre" role="alert" aria-live="polite"></span>
 
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="50" />
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" maxlength="50" autocomplete="family-name" />
+                    <span class="error-msg" id="error-apellido" role="alert" aria-live="polite"></span>
 
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required minlength="2" maxlength="50" />
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" maxlength="100" autocomplete="email" />
+                    <span class="error-msg" id="error-email" role="alert" aria-live="polite"></span>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required maxlength="100" />
+                    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" min="1900-01-01" />
+                    <span class="error-msg" id="error-fechaNacimiento" role="alert" aria-live="polite"></span>
 
-            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required min="1900-01-01" />
+                    <label for="paisResidencia">País de Residencia:</label>
+                    <input type="text" id="paisResidencia" name="paisResidencia" maxlength="60" autocomplete="country-name" />
+                    <span class="error-msg" id="error-paisResidencia" role="alert" aria-live="polite"></span>
 
-            <label for="paisResidencia">País de Residencia:</label>
-            <input type="text" id="paisResidencia" name="paisResidencia" required minlength="2" maxlength="60" />
+                    <button type="submit" class="btn btn-enviar">Enviar</button>
 
-            <div class="theme-buttons">
-                <label for="tema-normal" class="btn btn-estilo btn-normal">Estilo Normal</label>
-                <label for="tema-alto" class="btn btn-estilo btn-alto">Estilo Alto Contraste</label>
-            </div>
+                    <section class="theme-buttons" aria-label="Selector de temas visuales">
+                        <button type="button" id="btn-normal" class="btn btn-estilo btn-normal">Estilo Normal</button>
+                        <button type="button" id="btn-alto" class="btn btn-estilo btn-alto">Estilo Alto Contraste</button>
+                    </section>
 
-            <button type="submit" class="btn btn-enviar">Enviar</button>
-        </form>
+                    
+
+                </fieldset>
+            </form>
+        </main>
+
+        <script src="app.js"></script>
     </body>
 </html>

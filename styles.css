@@ -11,71 +11,74 @@
     --gris: #6d6d6d;
     --gris-oscuro: #374151;
     --amarillo: #facc15;
+    --error: #dc2626;
 }
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     min-height: 100vh;
     display: grid;
     place-items: center;
     background: var(--bg-claro);
     font-family: Arial, Helvetica, sans-serif;
     transition: background 0.2s ease;
+    padding: 20px;
 }
 
-body:has(#tema-alto:checked) {
+body.alto-contraste {
     background: var(--bg-oscuro);
-}
-
-.theme-toggle {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
 }
 
 .card {
     width: 100%;
-    max-width: 470px;
+    max-width: 480px;
     background: var(--panel-claro);
     border: 3px solid #2f2f2f;
     border-radius: 12px;
-    padding: 18px 26px 20px;
-    display: grid;
-    grid-template-columns: 170px 1fr;
-    gap: 12px;
+    padding: 24px 26px;
     transition: background 0.2s ease, border-color 0.2s ease;
 }
 
-body:has(#tema-alto:checked) .card {
+body.alto-contraste .card {
     background: var(--panel-oscuro);
     border-color: #f3f4f6;
 }
 
-h1 {
-    grid-column: 1 / -1;
-    margin: 0 0 6px;
-    font-size: 22px;
-    line-height: 1.2;
-    text-align: center;
-    color: var(--texto-claro);
+fieldset {
+    border: none;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    row-gap: 6px;
+    column-gap: 12px;
+    align-items: center;
 }
 
-body:has(#tema-alto:checked) .card h1 {
+legend {
+    grid-column: 1 / -1;
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--texto-claro);
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+body.alto-contraste legend {
     color: var(--texto-blanco);
 }
 
 label {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #1f1f1f;
-    align-self: center;
 }
 
-body:has(#tema-alto:checked) .card label {
+body.alto-contraste label {
     color: #f3f4f6;
 }
 
@@ -90,7 +93,7 @@ input {
     color: #111;
 }
 
-body:has(#tema-alto:checked) .card input {
+body.alto-contraste input {
     background: #0f172a;
     border-color: #d1d5db;
     color: #ffffff;
@@ -101,17 +104,28 @@ input[type="date"] {
     color: #6b7280;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    filter: invert(0.2);
+body.alto-contraste input[type="date"] {
+    color-scheme: dark;
+    color: #ffffff;
 }
 
-.theme-buttons {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 8px;
+/* El span ocupa la columna del input y no desfasa los labels */
+.error-msg {
+    grid-column: 2;
+    color: var(--error);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: none;
+    margin-bottom: 6px;
+}
+
+.error-msg.visible {
+    display: block;
+}
+
+body.alto-contraste .error-msg {
+    color: #ff4d4d;
 }
 
 .btn {
@@ -123,62 +137,52 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: inherit;
 }
 
 .btn-enviar {
+    grid-column: 1 / -1;
+    justify-self: center;
     width: 136px;
     height: 38px;
     background: var(--azul);
     color: #fff;
     font-size: 18px;
-    margin: 8px auto 0;
-    grid-column: 1 / -1;
+    margin-top: 14px;
 }
 
-body:has(#tema-alto:checked) .card .btn-enviar {
+body.alto-contraste .btn-enviar {
     background: var(--amarillo);
     color: #111827;
 }
 
+.theme-buttons {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 .btn-estilo {
-    width: 220px;
+    width: 180px;
     height: 36px;
     background: var(--gris);
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     border: 1px solid transparent;
-    padding: 0 12px;
-    text-align: center;
+    padding: 0 10px;
 }
 
-body:has(#tema-alto:checked) .card .btn-estilo {
-    background: var(--gris-oscuro);
-    border-color: #f3f4f6;
-    color: #ffffff;
-}
-
-#tema-normal:checked ~ .card .btn-normal {
+body:not(.alto-contraste) .btn-normal {
     background: var(--azul);
-    color: #ffffff;
     border-color: #0d4ea3;
-    box-shadow: 0 0 0 2px rgba(29, 119, 216, 0.25);
+    box-shadow: 0 0 0 2px rgba(29, 119, 216, 0.3);
 }
 
-#tema-normal:checked ~ .card .btn-alto {
-    background: var(--gris);
-    color: #ffffff;
-}
-
-body:has(#tema-alto:checked) .card .btn-normal {
-    background: #e5e7eb;
-    color: #111827;
-}
-
-body:has(#tema-alto:checked) .card .btn-alto {
+body.alto-contraste .btn-alto {
     background: var(--gris-oscuro);
-    color: #ffffff;
     border-color: #f3f4f6;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
 }
-
